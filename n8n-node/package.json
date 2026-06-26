@@ -7,31 +7,42 @@
     "n8n",
     "signatrust",
     "ai",
+    "ai-agents",
     "decision-receipt",
     "verification",
     "audit",
     "compliance",
-    "trust"
+    "eu-ai-act",
+    "trust",
+    "cryptography",
+    "ed25519"
   ],
   "license": "MIT",
-  "homepage": "https://signatrust.net",
+  "homepage": "https://signatrust.net/n8n",
   "author": {
-    "name": "Signatrust",
-    "email": "partners@signatrust.net",
-    "url": "https://signatrust.net"
+    "name": "Yasser Abou Faoor",
+    "email": "partners@signatrust.net"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abokenan444/Signatrust.git"
+    "url": "git+https://github.com/abokenan444/Signatrust.git",
+    "directory": "n8n-node"
   },
   "bugs": {
-    "url": "https://github.com/abokenan444/Signatrust/issues",
-    "email": "partners@signatrust.net"
+    "url": "https://github.com/abokenan444/Signatrust/issues"
   },
-  "main": "index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
     "prepublishOnly": "npm run build"
   },
   "n8n": {
