@@ -19,8 +19,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Use npm 11
+        run: npm install -g npm@11
 
       - name: Install dependencies
         working-directory: ./n8n-node
