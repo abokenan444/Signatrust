@@ -24,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./n8n-node
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Build
         working-directory: ./n8n-node
