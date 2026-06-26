@@ -1,6 +1,5 @@
 import {
 	IAuthenticateGeneric,
-	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
 } from 'n8n-workflow';
@@ -8,56 +7,8 @@ import {
 export class SignatrustApi implements ICredentialType {
 	name = 'signatrustApi';
 	displayName = 'Signatrust API';
-	documentationUrl = 'https://signatrust.net/n8n';
+	documentationUrl = 'https://signatrust.net/docs/api';
 	icon = 'file:signatrust.svg' as const;
-
-	properties: INodeProperties[] = [
-		{
-			displayName: 'Connection Type',
-			name: 'connectionType',
-			type: 'options',
-			options: [
-				{ name: 'Signatrust Cloud', value: 'cloud' },
-				{ name: 'Self-Hosted Enterprise', value: 'selfHosted' },
-			],
-			default: 'cloud',
-			description:
-				'Choose Signatrust Cloud (default — https://signatrust.net) or point the node at your self-hosted enterprise endpoint.',
-		},
-		{
-			displayName: 'API Key',
-			name: 'apiKey',
-			type: 'string',
-			typeOptions: {
-				password: true,
-			},
-			default: '',
-			required: true,
-			description:
-				'Your Signatrust agent API key (starts with sk_live_…). Get one from https://signatrust.net/register — the key is shown once when the agent is created.',
-		},
-		{
-			displayName: 'Base URL',
-			name: 'baseUrl',
-			type: 'string',
-			default: 'https://signatrust.net/api/v1/n8n',
-			required: true,
-			description:
-				'Signatrust API base URL. Default is Cloud. For self-hosted enterprise use e.g. https://signatrust.your-company.com/api/v1/n8n.',
-			displayOptions: {
-				show: { connectionType: ['selfHosted'] },
-			},
-		},
-		{
-			displayName: 'Base URL',
-			name: 'baseUrl',
-			type: 'hidden',
-			default: 'https://signatrust.net/api/v1/n8n',
-			displayOptions: {
-				show: { connectionType: ['cloud'] },
-			},
-		},
-	];
 
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
@@ -68,13 +19,25 @@ export class SignatrustApi implements ICredentialType {
 		},
 	};
 
-	// Pings the auth-protected /ping endpoint. A green check in the n8n UI
-	// means the API key resolved to a live, non-suspended agent.
-	test: ICredentialTestRequest = {
-		request: {
-			baseURL: '={{$credentials.baseUrl}}',
-			url: '/ping',
-			method: 'GET',
+	properties: INodeProperties[] = [
+		{
+			displayName: 'API Key',
+			name: 'apiKey',
+			type: 'string',
+			typeOptions: {
+				password: true,
+			},
+			default: '',
+			required: true,
+			description: 'Your Signatrust API key. You can find it in your <a href="https://signatrust.net/dashboard" target="_blank">Signatrust dashboard</a> under Settings → API Keys.',
 		},
-	};
+		{
+			displayName: 'Base URL',
+			name: 'baseUrl',
+			type: 'string',
+			default: 'https://api.signatrust.net/v1',
+			required: true,
+			description: 'The base URL of the Signatrust API. Use the default for <a href="https://signatrust.net" target="_blank">Signatrust Cloud</a>, or enter your self-hosted Enterprise endpoint (e.g. https://signatrust.yourcompany.com/v1).',
+		},
+	];
 }

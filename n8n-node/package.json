@@ -1,48 +1,37 @@
 {
   "name": "n8n-nodes-signatrust",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "n8n community node for Signatrust — generate, verify, and retrieve cryptographically signed AI Decision Receipts for autonomous AI agents.",
   "keywords": [
     "n8n-community-node-package",
     "n8n",
     "signatrust",
     "ai",
-    "ai-agents",
     "decision-receipt",
     "verification",
     "audit",
     "compliance",
-    "eu-ai-act",
-    "trust",
-    "cryptography",
-    "ed25519"
+    "trust"
   ],
   "license": "MIT",
-  "homepage": "https://signatrust.net/n8n",
+  "homepage": "https://signatrust.net",
   "author": {
-    "name": "Yasser Abou Faoor",
-    "email": "partners@signatrust.net"
+    "name": "Signatrust",
+    "email": "partners@signatrust.net",
+    "url": "https://signatrust.net"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abokenan444/Signatrust.git",
-    "directory": "n8n-node"
+    "url": "git+https://github.com/abokenan444/Signatrust.git"
   },
   "bugs": {
-    "url": "https://github.com/abokenan444/Signatrust/issues"
+    "url": "https://github.com/abokenan444/Signatrust/issues",
+    "email": "partners@signatrust.net"
   },
-  "engines": {
-    "node": ">=20"
-  },
-  "files": [
-    "dist"
-  ],
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "format": "prettier nodes credentials --write",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix",
     "prepublishOnly": "npm run build"
   },
   "n8n": {
@@ -58,16 +47,5 @@
     "@types/node": "^20.0.0",
     "n8n-workflow": "*",
     "typescript": "^5.0.0"
-  },
-  "peerDependencies": {
-    "n8n-workflow": "*"
-  },
-  "files": [
-    "dist",
-    "nodes",
-    "credentials",
-    "README.md",
-    "LICENSE",
-    "example-workflow.json"
-  ]
+  }
 }
