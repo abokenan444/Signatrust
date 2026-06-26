@@ -1,0 +1,54 @@
+{
+  "name": "n8n-nodes-signatrust",
+  "version": "0.1.0",
+  "description": "n8n community node for Signatrust — generate, verify, and retrieve cryptographically signed AI Decision Receipts for autonomous AI agents.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "signatrust",
+    "ai",
+    "decision-receipt",
+    "verification",
+    "audit",
+    "compliance",
+    "trust"
+  ],
+  "license": "MIT",
+  "homepage": "https://signatrust.net",
+  "author": {
+    "name": "Signatrust",
+    "email": "partners@signatrust.net",
+    "url": "https://signatrust.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abokenan444/Signatrust.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abokenan444/Signatrust/issues",
+    "email": "partners@signatrust.net"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/SignatrustApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Signatrust/Signatrust.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "n8n-workflow": "*",
+    "typescript": "^5.0.0"
+  }
+}

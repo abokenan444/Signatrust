@@ -1,0 +1,74 @@
+{
+  "name": "AI Loan Approval with Signatrust Receipt",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "prompt": "Evaluate this loan application: Name: John Doe, Income: $120,000, Requested Amount: $50,000. Reply with JSON {approved: true/false, reason: string}."
+      },
+      "id": "2",
+      "name": "OpenAI Agent",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "operation": "generateReceipt",
+        "agentName": "LoanApprovalAgent",
+        "workflowName": "AI Loan Approval with Signatrust Receipt",
+        "action": "Evaluated loan application",
+        "decision": "={{ $json.message.content }}",
+        "additionalFields": {
+          "modelUsed": "gpt-4o",
+          "tags": "finance, loan"
+        }
+      },
+      "id": "3",
+      "name": "Signatrust",
+      "type": "n8n-nodes-signatrust.signatrust",
+      "typeVersion": 1,
+      "position": [680, 300],
+      "credentials": {
+        "signatrustApi": {
+          "id": "1",
+          "name": "Signatrust API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Agent": {
+      "main": [
+        [
+          {
+            "node": "Signatrust",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}
