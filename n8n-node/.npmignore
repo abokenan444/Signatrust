@@ -1,0 +1,17 @@
+# Source files - not needed in published package
+nodes/**/*.ts
+credentials/**/*.ts
+tsconfig.json
+.github/
+test/
+*.test.ts
+*.spec.ts
+signatrust_mock_api.py
+test_node_integration.py
+
+# Keep these
+# dist/ - compiled output (required)
+# LICENSE
+# README.md
+# package.json
+# example-workflow.json
