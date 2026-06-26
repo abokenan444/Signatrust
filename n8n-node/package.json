@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-signatrust",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "n8n community node for Signatrust. Generate, verify, and retrieve cryptographically signed AI Decision Receipts (Ed25519) for autonomous AI agents. Cloud and self-hosted enterprise.",
 	"keywords": [
 		"n8n-community-node-package",
@@ -36,7 +36,6 @@
 	"engines": {
 		"node": "^20.19.0 || ^22.13.0 || >=24"
 	},
-	"main": "index.js",
 	"scripts": {
 		"build": "n8n-node build",
 		"build:watch": "tsc --watch",
