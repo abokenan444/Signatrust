@@ -1,17 +1,22 @@
-# Source files - not needed in published package
-nodes/**/*.ts
-credentials/**/*.ts
+# Source files - we only ship the compiled dist + docs + example
+node_modules/
+nodes/
+credentials/
+scripts/
+.eslintrc.cjs
+.eslintrc.js
+.gitignore
+.npmignore
+.prettierrc
 tsconfig.json
-.github/
-test/
-*.test.ts
-*.spec.ts
-signatrust_mock_api.py
-test_node_integration.py
+tsconfig.tsbuildinfo
+*.log
+*.tgz
 
-# Keep these
-# dist/ - compiled output (required)
-# LICENSE
-# README.md
-# package.json
-# example-workflow.json
+# Avoid shipping lockfile to consumers
+package-lock.json
+
+# Build/dev artifacts
+.DS_Store
+.vscode/
+.idea/

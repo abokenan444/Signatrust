@@ -4,7 +4,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es2019",
-    "lib": ["es2019"],
+    "lib": ["es2019", "es2020.string"],
     "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
@@ -12,7 +12,14 @@
     "declarationMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "preserveConstEnums": true,
+    "resolveJsonModule": true
   },
   "include": ["nodes/**/*", "credentials/**/*"],
   "exclude": ["node_modules", "dist"]
