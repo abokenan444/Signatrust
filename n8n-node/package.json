@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-signatrust",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "n8n community node for Signatrust — generate, verify, and retrieve cryptographically signed AI Decision Receipts for autonomous AI agents.",
   "keywords": [
     "n8n-community-node-package",
@@ -48,6 +48,9 @@
     "nodes": [
       "dist/nodes/Signatrust/Signatrust.node.js"
     ]
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
