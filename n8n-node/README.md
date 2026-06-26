@@ -4,9 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![n8n Community Node](https://img.shields.io/badge/n8n-Community%20Node-orange)](https://docs.n8n.io/integrations/community-nodes/)
 
-This is an **n8n community node** for **[Signatrust](https://signatrust.net)**. It allows you to generate, verify, and retrieve cryptographically signed **AI Decision Receipts** for autonomous AI agents directly within your n8n workflows.
+This is the official **n8n Community Node** for **[Signatrust](https://signatrust.net)** — the trust, verification, and accountability layer for autonomous AI agents.
 
-[Signatrust](https://signatrust.net) is the **trust, verification, and insurance layer for autonomous AI agents**. By using this node, you create an immutable, cryptographically verifiable audit trail of every decision your AI agents make — enabling accountability, compliance, and trust in automated systems.
+It allows you to generate, verify, and retrieve cryptographically signed **AI Decision Receipts** directly within your n8n workflows, creating independently verifiable evidence of every AI agent decision — without exposing prompts, outputs, or sensitive business data.
 
 ---
 
@@ -20,15 +20,30 @@ This is an **n8n community node** for **[Signatrust](https://signatrust.net)**. 
 
 ---
 
+## AI Agent Agnostic
+
+This node works with **any AI integration** in n8n. Pass the output of any AI node directly to Signatrust:
+
+| AI Integration | Expression |
+|---|---|
+| OpenAI / GPT-4o | `{{ $json.message.content }}` |
+| LangChain Agent | `{{ $json.output }}` |
+| Anthropic Claude | `{{ $json.content[0].text }}` |
+| Google Gemini | `{{ $json.candidates[0].content.parts[0].text }}` |
+| n8n AI Agent Node | `{{ $json.output }}` |
+| Any HTTP Request | `{{ $json }}` |
+
+---
+
 ## How it works
 
-Place the Signatrust node **immediately after** any AI node (OpenAI, Anthropic, LangChain, etc.) in your workflow. Pass the AI's decision output to the node, and it will:
+Place the Signatrust node **immediately after** any AI decision node in your workflow:
 
-1. Send the decision data to the [Signatrust API](https://signatrust.net/docs/api)
-2. Return a `receipt_id`, cryptographic `hash`, `signature`, and a public `verify_url`
-3. Allow anyone to verify the receipt at `https://verify.signatrust.net/r/{receipt_id}`
+```
+[Trigger] → [AI Agent] → [Signatrust: Generate Receipt] → [Continue workflow]
+```
 
-This node does **not** interfere with n8n's internal workflow logs or execution history. It operates purely on the explicit AI decision data you pass to it.
+Signatrust returns a `receipt_id`, cryptographic `hash`, `signature`, and a public `verify_url`. Anyone can independently verify the receipt at `https://verify.signatrust.net/r/{receipt_id}` — without accessing your system, prompts, or raw outputs.
 
 ---
 
@@ -50,22 +65,17 @@ npm install n8n-nodes-signatrust
 
 ## Credentials
 
-To use this node, you need a Signatrust API Key.
-
 1. Create a free account at [signatrust.net](https://signatrust.net)
 2. Navigate to your [dashboard](https://signatrust.net/dashboard) → **Settings → API Keys**
 3. Generate a new API Key
-4. In n8n, add a new **Signatrust API** credential
-5. Paste your API Key
-6. *(Optional)* If using **Signatrust Enterprise (Self-Hosted)**, update the **Base URL** to your internal endpoint
+4. In n8n, add a new **Signatrust API** credential and paste your key
+5. *(Enterprise only)* Update the **Base URL** to your self-hosted endpoint
 
 ---
 
 ## Usage
 
-### 1. Generate Decision Receipt
-
-Use this operation immediately after an AI decision node.
+### Generate Decision Receipt
 
 **Required fields:**
 - **Agent Name** — e.g. `LoanApprovalAgent`
@@ -91,13 +101,10 @@ Use this operation immediately after an AI decision node.
 }
 ```
 
-### 2. Verify Decision Receipt
+### Verify Decision Receipt
 
 Verify that a receipt has not been tampered with since it was generated.
 
-- **Receipt ID** — The ID returned from Generate
-
-**Returns:**
 ```json
 {
   "receipt_id": "rcpt_a1b2c3d4e5f6",
@@ -108,7 +115,7 @@ Verify that a receipt has not been tampered with since it was generated.
 }
 ```
 
-### 3. Get Decision Receipt
+### Get Decision Receipt
 
 Retrieve the full details of a receipt by its ID.
 
@@ -116,12 +123,12 @@ Retrieve the full details of a receipt by its ID.
 
 ## Example Workflow
 
-An example workflow JSON is included in this repository: [`example-workflow.json`](./example-workflow.json)
+An example workflow JSON is included: [`example-workflow.json`](./example-workflow.json)
 
 It demonstrates:
 - Calling OpenAI to evaluate a loan application
-- Immediately generating a Signatrust receipt for the AI's decision
-- Returning both the AI output and the receipt to the caller
+- Generating a Signatrust receipt for the AI decision
+- Returning both the AI output and the signed receipt
 
 ---
 
@@ -138,7 +145,7 @@ It demonstrates:
 - **Website**: [signatrust.net](https://signatrust.net)
 - **API Documentation**: [signatrust.net/docs/api](https://signatrust.net/docs/api)
 - **Dashboard**: [signatrust.net/dashboard](https://signatrust.net/dashboard)
-- **Email**: [partners@signatrust.net](mailto:partners@signatrust.net)
+- **Enterprise inquiries**: [partners@signatrust.net](mailto:partners@signatrust.net)
 - **Issues**: [GitHub Issues](https://github.com/abokenan444/Signatrust/issues)
 
 ---
