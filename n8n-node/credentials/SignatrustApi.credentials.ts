@@ -12,7 +12,7 @@ export class SignatrustApi implements ICredentialType {
 
 	documentationUrl = 'https://signatrust.net/n8n';
 
-	icon = 'file:signatrust.svg' as const;
+	icon = { light: 'file:signatrust.svg', dark: 'file:signatrust.dark.svg' } as const;
 
 	properties: INodeProperties[] = [
 		{

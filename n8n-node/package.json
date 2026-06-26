@@ -1,76 +1,72 @@
 {
-  "name": "n8n-nodes-signatrust",
-  "version": "0.2.6",
-  "description": "n8n community node for Signatrust. Generate, verify, and retrieve cryptographically signed AI Decision Receipts (Ed25519) for autonomous AI agents. Cloud and self-hosted enterprise.",
-  "keywords": [
-    "n8n-community-node-package",
-    "n8n",
-    "signatrust",
-    "ai",
-    "ai-agents",
-    "decision-receipt",
-    "verification",
-    "audit",
-    "compliance",
-    "eu-ai-act",
-    "trust",
-    "cryptography",
-    "ed25519"
-  ],
-  "license": "MIT",
-  "homepage": "https://signatrust.net/n8n",
-  "author": {
-    "name": "Yasser Abou Faoor",
-    "email": "partners@signatrust.net",
-    "url": "https://signatrust.net"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/abokenan444/Signatrust.git",
-    "directory": "n8n-node"
-  },
-  "bugs": {
-    "url": "https://github.com/abokenan444/Signatrust/issues",
-    "email": "partners@signatrust.net"
-  },
-  "engines": {
-    "node": ">=20.15"
-  },
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc && node scripts/copy-icons.js",
-    "dev": "tsc --watch",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix",
-    "format": "prettier nodes credentials --write",
-    "prepublishOnly": "npm run build && npm run lint"
-  },
-  "files": [
-    "dist",
-    "LICENSE",
-    "README.md",
-    "example-workflow.json"
-  ],
-  "n8n": {
-    "n8nNodesApiVersion": 1,
-    "credentials": [
-      "dist/credentials/SignatrustApi.credentials.js"
-    ],
-    "nodes": [
-      "dist/nodes/Signatrust/Signatrust.node.js"
-    ]
-  },
-  "peerDependencies": {
-    "n8n-workflow": "*"
-  },
-  "devDependencies": {
-    "@types/node": "^20.19.0",
-    "@typescript-eslint/parser": "^8.62.0",
-    "eslint": "^8.57.1",
-    "eslint-plugin-n8n-nodes-base": "^1.16.0",
-    "jsonc-eslint-parser": "^2.4.0",
-    "n8n-workflow": "^2.16.0",
-    "prettier": "^3.0.0",
-    "typescript": "^5.9.0"
-  }
+	"name": "n8n-nodes-signatrust",
+	"version": "0.3.0",
+	"description": "n8n community node for Signatrust. Generate, verify, and retrieve cryptographically signed AI Decision Receipts (Ed25519) for autonomous AI agents. Cloud and self-hosted enterprise.",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"signatrust",
+		"ai",
+		"ai-agents",
+		"decision-receipt",
+		"verification",
+		"audit",
+		"compliance",
+		"eu-ai-act",
+		"trust",
+		"cryptography",
+		"ed25519"
+	],
+	"license": "MIT",
+	"homepage": "https://signatrust.net/n8n",
+	"author": {
+		"name": "Yasser Abou Faoor",
+		"email": "partners@signatrust.net",
+		"url": "https://signatrust.net"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/abokenan444/Signatrust.git",
+		"directory": "n8n-node"
+	},
+	"bugs": {
+		"url": "https://github.com/abokenan444/Signatrust/issues",
+		"email": "partners@signatrust.net"
+	},
+	"engines": {
+		"node": "^20.19.0 || ^22.13.0 || >=24"
+	},
+	"main": "index.js",
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/SignatrustApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Signatrust/Signatrust.node.js"
+		]
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"eslint": "9.29.0",
+		"prettier": "3.6.2",
+		"release-it": "^19.0.4",
+		"typescript": "5.9.2"
+	}
 }

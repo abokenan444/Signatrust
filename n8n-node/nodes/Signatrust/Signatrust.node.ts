@@ -7,6 +7,7 @@ import {
 	INodeTypeDescription,
 	JsonObject,
 	NodeApiError,
+	NodeConnectionTypes,
 	NodeOperationError,
 } from 'n8n-workflow';
 
@@ -14,7 +15,7 @@ export class Signatrust implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Signatrust',
 		name: 'signatrust',
-		icon: 'file:signatrust.svg',
+		icon: { light: 'file:signatrust.svg', dark: 'file:signatrust.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
@@ -23,8 +24,9 @@ export class Signatrust implements INodeType {
 		defaults: {
 			name: 'Signatrust',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		usableAsTool: true,
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: 'signatrustApi',
@@ -54,16 +56,16 @@ export class Signatrust implements INodeType {
 							'Cryptographically seal an AI decision into a Signatrust Decision Receipt',
 					},
 					{
-						name: 'Verify Decision Receipt',
-						value: 'verifyReceipt',
-						action: 'Verify a decision receipt',
-						description: 'Verify the authenticity and integrity of an existing receipt',
-					},
-					{
 						name: 'Get Decision Receipt',
 						value: 'getReceipt',
 						action: 'Get a decision receipt',
 						description: 'Retrieve the full details of a receipt by its ID',
+					},
+					{
+						name: 'Verify Decision Receipt',
+						value: 'verifyReceipt',
+						action: 'Verify a decision receipt',
+						description: 'Verify the authenticity and integrity of an existing receipt',
 					},
 				],
 				default: 'generateReceipt',
