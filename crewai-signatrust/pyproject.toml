@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "crewai-signatrust"
+version = "0.1.0"
+description = "CrewAI tools for Signatrust — cryptographically signed, tamper-evident AI Decision Receipts."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Signatrust", email = "partners@signatrust.net" }]
+keywords = [
+    "crewai",
+    "signatrust",
+    "ai-governance",
+    "ai-accountability",
+    "audit",
+    "compliance",
+    "eu-ai-act",
+    "decision-receipts",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "crewai>=0.70",
+    "requests>=2.28",
+    "pydantic>=2,<3",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7",
+    "requests-mock>=1.11",
+]
+
+[project.urls]
+Homepage = "https://signatrust.net"
+Documentation = "https://signatrust.net/docs/api"
+Repository = "https://github.com/abokenan444/Signatrust"
+Issues = "https://github.com/abokenan444/Signatrust/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["crewai_signatrust"]
